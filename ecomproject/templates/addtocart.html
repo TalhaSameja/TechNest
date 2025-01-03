@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ADDTOCART{% endblock title %}
+{% block body %} 
+<div class='container'>
+<h3>Product Added To cart sucessfully</h3>
+ 
+
+{% comment %} <a class="dropdown-item" href="{% url 'ecomapp:mycart' %}">Cart</a>
+<button type="button"  class="btn btn-success"><a href="{% url 'ecomapp:mycart' %}">Cart</a></button> {% endcomment %}
+<button class="btn btn-outline-success" type="submit"><a href="{% url 'ecomapp:mycart' %}">Cart</a></button>
+
+<button class="btn btn-outline-success" type="submit"><a href="/#">Return To HomePage</a></button>
+
+</div>
+{% endblock body %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Bike{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Search Results for <span class="text-info">"{{request.GET.keyword}}"</span></h3>
+            <hr>
+            {% for result in results %}
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <img src="{{result.image.url}}" class="img-fluid result-image" alt="">
+                </div>
+                <div class="col-md-9">
+                    <h4><a href="{% url 'ecomapp:product_detail' result.slug %}" class="result-title">{{result.title}}</a></h4>
+                    <p class="result-description">{{result.description|truncatewords:50}}</p>
+                    <div class="result-actions d-flex justify-content-between align-items-center">
+                        <div class="price">{{result.price|floatformat:2}}</div>
+                        <a href="{% url 'ecomapp:addtocart' result.id %}" class="btn btn-primary result-add-to-cart">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

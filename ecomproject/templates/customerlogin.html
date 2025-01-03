@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block body %} 
+
+<style >
+  
+    .errorlist {
+        color: red;
+
+    
+    }
+</style>
+<section class="vh-100" style="background-color:#e6f3ff">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img
+          src="{% static 'image\login.png' %}"
+            class="img-fluid bike-img"
+            alt="Sample image"
+          />
+        </div>
+        <div class="col-md-8 col-lg-8 col-xl-4 offset-xl-1">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h3>Customer Login Form</h3>
+            <hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">Login as a Customer</button>
+                {% if error %}
+                <li style="color: red;">{{error}}</li>
+                {% endif %}
+            </form>
+            
+            <p>Forgot Password?<a href="{% url 'ecomapp:passworforgot' %}">Reset now.</a></p>
+            <p> or dont have account? <a href="{% url 'ecomapp:customerregistration' %}{% if request.GET.next %}?next={{request.GET.next}}{% endif %}">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock body %}

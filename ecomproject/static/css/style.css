@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");
+
+div > img {
+max-width: 100%;
+object-fit: cover;
+}
+
+.background-header {
+background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+.header-text h1 {
+font-weight: 600;
+letter-spacing: 1.6px;
+}
+
+.btn-success {
+padding: 10px 30px;
+border-radius: 20px;
+}
+
+.the-cat {
+padding: 7px 15px;
+background-color: #d7d7d74a;
+border-radius: 25px;
+}
+
+.heart-pos {
+top: 3%;
+right: 3%;
+}
+
+.heart-pos p i::before {
+color: #cccccc;
+transition: 0.2s ease-in;
+}
+
+.heart-pos p i:hover::before {
+color: #cc0f0f;
+}
+
+.product-desc p {
+color: #878787;
+font-size: 13px;
+}
+
+.btn-custom {
+padding-top: 5px;
+border: 1px solid #878787;
+padding: 5px 10px;
+background-color: #dddddd69;
+font-size: 15px;
+transition: 0.5s;
+border-radius: 25px;
+}
+
+.btn-custom:hover {
+background-color: #278016;
+border-radius: 5px;
+color: white;
+}
+
+.arrival-border {
+border-bottom: 1px solid #d4d4d497;
+}
+
+.img-height img {
+height: 15rem;
+}
+
+.buy {
+text-decoration: none;
+}
+
+.card:hover {
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-custom {
+background-color: #28a745;
+color: white;
+border: none;
+}
+
+.btn-custom:hover {
+background-color: #218838;
+}

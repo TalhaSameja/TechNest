@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}ProductDetail{% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
+        <div class="card-body">
+          <div class="row">
+            {% for pi in product.productimage_set.all %}
+              <div class="col-md-4 p-2">
+                <a href="{{ pi.image.url }}" target="_blank">
+                  <img src="{{ pi.image.url }}" class="img-fluid" style="height: 100px; object-fit: contain;" alt="">
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <h2 class="mb-4">{{ product.title }}</h2>
+      {% if product.is_new %}
+        <p class="text-success">Condition: New</p>
+      {% else %}
+        <p class="text-warning">Condition: Used</p>
+      {% endif %}
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="lead mb-0">Category:</p>
+          <p class="lead">{{ product.category }}</p>
+        </div>
+        <div class="col-6">
+          <p class="lead mb-0">Price:</p>
+          <p class="lead"><strike>Rs. {{ product.marked_price }}</strike> Rs. {{ product.selling_price }}</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="text-info mb-0">Warranty:</p>
+          <p class="text-info">{{ product.warranty }}</p>
+          <p class="text-info mb-0">View Count:</p>
+          <p class="text-info">{{ product.view_count }}</p>
+        </div>
+        <div class="col-6">
+          <a href="{% url 'ecomapp:addtocart' product.id %}" class="btn btn-success float-end">
+            Add to Cart
+          </a>
+        </div>
+      </div>
+      <p class="card-text">{{ product.description }}</p>
+      <hr>
+
+      <h4 class="mb-4">Reviews</h4>
+
+      {% if user.is_authenticated %}
+        {% if reviews %}
+          <div class="list-group mb-3">
+            {% for review in reviews %}
+              <div class="list-group-item">
+                <h5 class="mb-0">{{ review.title }}</h5>
+                <p class="mb-0">
+                  <strong>{{ review.user.username }}:</strong>
+                  {{ review.text }}
+                </p>
+                <small class="text-muted">
+                  Rating: {{ review.rating }}
+                  <br>
+                  Created at: {{ review.created_at }}
+                  <br>
+                  Updated at: {{ review.updated_at }}
+                </small>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No reviews yet.</p>
+        {% endif %}
+
+        <a href="{% url 'ecomapp:add_review' slug=product.slug %}" class="btn btn-primary">Add a review</a>
+      {% else %}
+        <p>Please <a href="{% url 'ecomapp:customerlogin' %}">log in</a> to add a review.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h4 class="mb-4">Other Products in {{ product.category }}</h4>
+      <div class="row">
+        {% for other_product in other_products %}
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <img src="{{ other_product.image.url }}" class="img-fluid" style="height: 100px; object-fit: contain;" alt="{{ other_product.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ other_product.title }}</h5>
+                <p class="card-text">
+                  <strong>Price:</strong> Rs. {{ other_product.selling_price }}
+                </p>
+                <a href="{% url 'ecomapp:product_detail' slug=other_product.slug %}" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
