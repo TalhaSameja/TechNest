@@ -32,7 +32,7 @@ Pygments==2.14.0
 pymongo==4.3.3
 python-dateutil==2.8.2
 pywin32==306
-pyzmq==25.0.2
+pyzmq==26.4.0
 requests==2.30.0
 six==1.16.0
 sqlparse==0.4.3
